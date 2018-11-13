@@ -1,6 +1,6 @@
 # Java
 
-### Java Web Service with MySQL & Java Web Application using PHP mysqli
+### 1. Java Web Service with MySQL & Java Web Application using PHP mysqli
 
 * *`Steps Web Service`*
   * Create a new Project (here Java EE Web Application)

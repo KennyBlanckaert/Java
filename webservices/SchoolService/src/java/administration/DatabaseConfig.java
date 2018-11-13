@@ -6,9 +6,7 @@
 package administration;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
@@ -21,7 +19,7 @@ public class DatabaseConfig {
     private static final String DB_URL = "jdbc:mysql://localhost:3306/School?autoReconnect=true&useSSL=false";
     private static final String DB_DRV = "com.mysql.jdbc.Driver";
     private static final String DB_USER = "Kenny";
-    private static final String DB_PASSWD = "Azerty123";
+    private static final String DB_PASSWD = "placeholder";
     
     // Functions
     public static Connection openConnection() {

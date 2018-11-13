@@ -5,12 +5,9 @@
  */
 package administration;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
+import entities.Course;
 import entities.Student;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
+import entities.Teacher;
 import java.util.List;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -24,9 +21,42 @@ import javax.jws.WebResult;
 @WebService(serviceName = "SchoolService")
 public class SchoolService {
 
+    // Get students
     @WebMethod(operationName = "getStudents")
     @WebResult(name="Student")
     public List<Student> getStudents() {
         return DbCommunication.getStudentFromDatabase();
+    }
+    
+    // Add student
+    @WebMethod(operationName = "addStudent")
+    public boolean addStudent(@WebParam(name = "firstname") String firstname, @WebParam(name = "lastname") String lastname) {
+        return DbCommunication.addStudentToDatabase(firstname, lastname);
+    }
+   
+    // Get courses
+    @WebMethod(operationName = "getCourses")
+    @WebResult(name="Course")
+    public List<Course> getCourses() {
+        return DbCommunication.getCoursesFromDatabase();
+    }
+    
+    // Add course
+    @WebMethod(operationName = "addCourse")
+    public boolean addCourse(@WebParam(name = "name") String name) {
+        return DbCommunication.addCourseToDatabase(name);
+    }
+    
+    // Get teachers
+    @WebMethod(operationName = "getTeachers")
+    @WebResult(name="Teacher")
+    public List<Teacher> getTeachers() {
+        return DbCommunication.getTeachersFromDatabase();
+    }
+    
+    // Add teacher
+    @WebMethod(operationName = "addTeacher")
+    public boolean addTeacher(@WebParam(name = "firstname") String firstname, @WebParam(name = "lastname") String lastname) {
+        return DbCommunication.addTeacherToDatabase(firstname, lastname);
     }
 }

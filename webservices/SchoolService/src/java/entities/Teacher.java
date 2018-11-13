@@ -6,12 +6,14 @@
 package entities;
 
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 
 /**
  *
  * @author Kenny Blanckaert
  */
 @XmlRootElement(name="Teacher")
+@XmlType(propOrder={"id", "firstname", "lastname"})
 public class Teacher {
     
     // Fields

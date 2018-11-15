@@ -15,9 +15,9 @@ $result = $conn->query($query);
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="My Webservice results">
+        <meta name="description" content="Teacher from the database">
         <meta name="author" content="Kenny Blanckaert">
-        <title>Webservice Results</title>
+        <title>Online Courses</title>
 
         <!-- css -->
         <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -26,7 +26,6 @@ $result = $conn->query($query);
     </head>
 
     <body id="page-top" data-spy="scroll" data-target=".side-menu">
-
         <div>
             <!-- Teachers -->
             <div class="row me-row content-ct speaker" id="speakers">
@@ -42,13 +41,9 @@ $result = $conn->query($query);
                         echo '</div>';
                     }
                 }
-                else {
-                    echo '<div><p>No results...</p></div>';
-                }
-              
+         
                 ?>
             </div>
-            <!-- End: Speakers -->
         </div>
-    </body>
+    </body>  
 </html>

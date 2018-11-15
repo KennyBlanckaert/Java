@@ -9,6 +9,7 @@ import entities.Course;
 import entities.Student;
 import entities.Teacher;
 import java.util.List;
+import javax.jws.HandlerChain;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
@@ -19,6 +20,7 @@ import javax.jws.WebResult;
  * @author Kenny Blanckaert
  */
 @WebService(serviceName = "SchoolService")
+@HandlerChain(file = "SchoolService_handler.xml")
 public class SchoolService {
 
     // Get students

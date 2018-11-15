@@ -18,3 +18,7 @@
 * *`For Testing:`* 
   * Right-click Project > Deploy
   * Right-click Service > Test Web Service
+* *`For Use:`*
+  * Create a new Project
+  * Right-click project > New > Web Service Client > Add WSDL > Finish
+  * Drag methods from "Web Service Reference Folder" to use the available operations

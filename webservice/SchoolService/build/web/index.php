@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <?php
 DEFINE ('DB_USER', 'Kenny');
-DEFINE ('DB_PASSWORD', 'Azerty123');
+DEFINE ('DB_PASSWORD', 'placeholder');
 DEFINE ('DB_HOST', 'localhost');
 DEFINE ('DB_NAME', 'School');
 

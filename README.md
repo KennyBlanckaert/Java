@@ -11,6 +11,9 @@
       * Annotate service function with @WebResult(name="Student")
   * To define the order of the fields
       * Annotate class with @XmlType(propOrder={"id", "firstname", "lastname"})
+* *`Steps Handlers`*
+  * Create a LogicalHandler (for inspecting) or ProtocolHandler (for manipulation) file 
+  * Right-click Web Service > Configure handlers > Add Handler class(es)
 * *`Steps Web Application`*
   * Add *.html or *.php
   * PHP is used to extract information from the database and to put it into the webpage

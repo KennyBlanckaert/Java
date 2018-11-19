@@ -40,7 +40,7 @@
     * identifiers must be Long (MySQL) or String (Mongo)
     * annotate identifiers with *@Id* & *@GeneratedValue*
   * Repository
-    * extends CrudRepository or MongoRepository
+    * inferface extending CrudRepository or MongoRepository
     * use *@Query* annotations
   * Bean
       * annotate with *@Bean*

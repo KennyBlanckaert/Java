@@ -1,0 +1,116 @@
+version: '3'
+
+services:
+  mysql:
+    image: mysql:8
+    container_name: MySQL
+    environment:
+      MYSQL_ROOT_PASSWORD: Azerty123
+      MYSQL_DATABASE: Patient
+
+  mongo:
+    image: mongo:3.2
+    container_name: Mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: Azerty123
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: Kafka
+    ports:
+      - '9092:9092'
+    links:
+      - zookeeper
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: Zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://Kafka:9092
+      KAFKA_OFFSET_TOPIC_REPLICATION_FACTOR: 1
+  
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: Zookeeper
+    ports:
+      - '2181:2181'
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  patient:
+    image: patient:latest
+    container_name: Patient
+    restart: always
+    links:
+      - mysql
+      - kafka
+      - zookeeper
+    depends_on:
+      - mysql
+      - kafka
+      - zookeeper
+
+  reception:
+    image: reception:latest
+    container_name: Reception
+    restart: always
+    links:
+      - mysql
+      - kafka
+      - zookeeper
+    depends_on:
+      - mysql
+      - kafka
+      - zookeeper
+    volumes:
+      - "/home/student/Documents/java/reception:/app"
+
+  ward:
+    image: ward:latest
+    container_name: Ward
+    restart: always
+    links:
+      - mysql
+      - kafka
+      - zookeeper
+    depends_on:
+      - mysql
+      - kafka
+      - zookeeper
+    volumes:
+      - "/home/student/Documents/java/ward:/app"
+
+  finance:
+    image: finance:latest
+    container_name: Finance
+    restart: always
+    links:
+      - mongo
+      - kafka
+      - zookeeper
+    depends_on:
+      - mongo
+      - kafka
+      - zookeeper
+    volumes:
+      - "/home/student/Documents/java/finance:/app"
+
+  api_gateway:
+    image: api_gateway:latest
+    container_name: API-gateway
+    ports:
+      - "80:8080"    
+    restart: always
+    links:
+      - patient
+      - reception
+      - ward
+      - finance
+    depends_on:
+      - patient
+      - reception
+      - ward
+      - finance
+    volumes:
+      - "/home/student/Documents/java/api_gateway:/app"      

@@ -13,7 +13,7 @@ public class Invoice {
 	// Fields
 	@Id
 	private String id;
-	private Long patientID;
+	private String patientID;
 	private Long hospitalStayID;
 	private LocalDate created;
 	private Status status;
@@ -22,7 +22,7 @@ public class Invoice {
 	// Constructors
 	protected Invoice() { }
 	
-	public Invoice(Long patientID, Long hospitalStayID) {
+	public Invoice(String patientID, Long hospitalStayID) {
 		this.patientID = patientID;
 		this.hospitalStayID = hospitalStayID;
 		this.created = LocalDate.now();
@@ -35,7 +35,7 @@ public class Invoice {
 		return id;
 	}
 
-	public Long getPatientID() {
+	public String getPatientID() {
 		return patientID;
 	}
 
@@ -60,7 +60,7 @@ public class Invoice {
 		this.id = id;
 	}
 
-	public void setPatientID(Long patientID) {
+	public void setPatientID(String patientID) {
 		this.patientID = patientID;
 	}
 

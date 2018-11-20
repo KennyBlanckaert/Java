@@ -26,21 +26,21 @@ public class FinanceApplication {
 			repository.deleteAll();
 			
 			// save a couple of invoices
-			Invoice invoice = new Invoice(1l, 10l);
+			Invoice invoice = new Invoice("1", 10l);
 			invoice.addItem("item1", 20.30);
 			invoice.paid();
 			repository.save(invoice);
 			
-			invoice = new Invoice(2l, 11l);
+			invoice = new Invoice("2", 11l);
 			invoice.addItem("item2", 5.30);
 			invoice.paid();
 			repository.save(invoice);
 			
-			invoice = new Invoice(2l, 12l);
+			invoice = new Invoice("2", 12l);
 			invoice.addItem("item3", 5.30);
 			repository.save(invoice);			
 
-			invoice = new Invoice(3l, 13l);
+			invoice = new Invoice("3", 13l);
 			invoice.addItem("item1", 20.30);
 			invoice.paid();
 			repository.save(invoice);

@@ -8,7 +8,13 @@ public interface ConsumerChannel {
 	// Topics
 	String BED_ASSIGNED = "bed_assigned";
 	
-	// Channels
+	String OPEN_INVOICE_RESULT = "open_invoice_result";
+	
+	// Channels to Ward
 	@Input(BED_ASSIGNED)
 	SubscribableChannel bedAssigned();
+	
+	// Channels to Finance
+	@Input(OPEN_INVOICE_RESULT)
+	public SubscribableChannel openInvoiceResult();
 }

@@ -25,4 +25,7 @@ public interface FinanceRepository extends MongoRepository<Invoice, String> {
 	
 	@Query("{ 'status' : {$ne : 'Paid'}}")
 	List<Invoice> findByStatusNotPaid();
+	
+	@Query("{ 'patientId' : ?0, 'status' : {$ne : 'PAID'}}")
+	List<Invoice> findByPatientIdAndStatusNotPaid(String patientId);
 }

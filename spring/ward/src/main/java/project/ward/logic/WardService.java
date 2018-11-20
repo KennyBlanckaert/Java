@@ -17,6 +17,15 @@ public class WardService {
 	private WardRepository repository;	
 	
 	// Service calls
+	public List<Ward> getWards() {
+		return repository.findAllWards();
+	}
+
+	public Ward getWardByID(Long id) {
+		return repository.findWardById(id);
+	}
+	
+	// Remote service calls
 	public Bed assignBed(HospitalStay hospitalStay) {
 		
 		if (repository.countByIdAndBedsPatientIDIsNull(hospitalStay.getWardID()) == 0) {
@@ -31,11 +40,16 @@ public class WardService {
 		return bed;
 	}
 
-	public List<Ward> getWards() {
-		return repository.findAllWards();
+	public void rollBack(HospitalStay hospitalStay) {
+		
+		// Roll back assigned bed
+		Ward ward = repository.findById(hospitalStay.getWardID()).get();
+		for(Bed bed : ward.getBeds()) {
+			if (bed.getPatientID() == hospitalStay.getPatientID()) {
+				bed.setPatientID(null);
+			}
+		}
+		
+		repository.save(ward);
 	}
-
-	public Ward getWardByID(Long id) {
-		return repository.findWardById(id);
-	}	
 }

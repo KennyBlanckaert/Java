@@ -18,6 +18,7 @@ public class HospitalStay {
 	private Long wardID;	
 	private Long bedID;	
 	private Date date;	
+	private HospitalStayStatus status;
 	
 	// Constructors
 	protected HospitalStay() {}
@@ -26,18 +27,25 @@ public class HospitalStay {
 	public Long getID() {
 		return id;
 	}
+	
 	public String getPatientID() {
 		return patientID;
 	}	
+	
 	public Long getWardID() {
 		return wardID;
 	}
-		public Date getDate() {
+	
+	public Date getDate() {
 		return date;
 	}
 		
 	public Long getBedID() {
 		return bedID;
+	}
+	
+	public HospitalStayStatus getStatus() {
+		return this.status;
 	}
 	
 	// Setters
@@ -59,6 +67,10 @@ public class HospitalStay {
 
 	public void setBedID(Long bedID) {
 		this.bedID = bedID;
+	}
+	
+	public void setStatus(HospitalStayStatus status) {
+		this.status = status;
 	}
 
 	// Functions

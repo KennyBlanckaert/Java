@@ -5,12 +5,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.stream.annotation.EnableBinding;
 import org.springframework.context.annotation.Bean;
 
+import project.ward.adapters.messaging.ConsumerChannel;
+import project.ward.adapters.messaging.ProducerChannel;
 import project.ward.entities.Ward;
 import project.ward.persistence.WardRepository;
 
 @SpringBootApplication
+@EnableBinding({ProducerChannel.class, ConsumerChannel.class})
 public class WardApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(WardApplication.class);

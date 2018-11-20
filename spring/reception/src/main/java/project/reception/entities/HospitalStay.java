@@ -55,6 +55,7 @@ public class HospitalStay {
 	public void setPatientID(String patientId) {
 		this.patientID = patientId;
 	}
+	
 	public Long getBedID() {
 		return bedID;
 	}

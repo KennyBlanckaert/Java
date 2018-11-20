@@ -25,3 +25,35 @@
   * Create a new Project
   * Right-click project > New > Web Service Client > Add WSDL > Finish
   * Drag methods from "Web Service Reference Folder" to use the available operations
+  
+### 2. Spring Boot persistence, Rest calls & Docker
+
+> Default port is 8080. Can be changed in application.properties with "server.port=..."  
+> Solve Cyclic JSON references with *@JsonBackReference* & *@JsonBackReference*
+
+* *`Setting up the database`*
+  * Dependencies
+    * spring-boot-starter-data-jpa & h2 (MySQL)
+    * spring-boot-starter-data-mongodb (Mongo)
+  * Entities
+    * annotate class with *@Entity* (MySQL) or *@Document* (Mongo)
+    * identifiers must be Long (MySQL) or String (Mongo)
+    * annotate identifiers with *@Id* & *@GeneratedValue*
+  * Repository
+    * inferface extending CrudRepository or MongoRepository
+    * use *@Query* annotations
+  * Bean
+      * annotate with *@Bean*
+      * add test data here
+* *`Communication using REST`*
+  * Dependencies
+    * spring-boot-starter-web
+  * RestController
+    * annotate with *@RestController*
+    * declare calls with *@RequestMapping*
+    * data can be passed using *@Requestparam*, *@PathVariable*, *@RequestBody*, ...
+    * refers to service
+  * Service
+    * Annotate with *@Component*
+    * refers to repository
+    

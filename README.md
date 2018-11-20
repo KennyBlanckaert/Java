@@ -56,4 +56,8 @@
   * Service
     * Annotate with *@Component*
     * refers to repository
+ * *`Kafka Message Broker`*
+   * *in progress*
+ * *`Docker orchestration`*
+   * *in progress*
     

@@ -38,10 +38,10 @@
   * Entities
     * annotate class with *@Entity* (MySQL) or *@Document* (Mongo)
     * identifiers must be Long (MySQL) or String (Mongo)
-    * annotate identifiers with *@Id* & *@GeneratedValue*
+    * annotate identifiers with *@Id* & *@GeneratedValue(...)*
   * Repository
     * inferface extending CrudRepository or MongoRepository
-    * use *@Query* annotations
+    * use *@Query(...)* annotations
   * Bean
       * annotate with *@Bean*
       * add test data here
@@ -50,14 +50,30 @@
     * spring-boot-starter-web
   * RestController
     * annotate with *@RestController*
-    * declare calls with *@RequestMapping*
+    * declare calls with *@RequestMapping(value=..., method=...)*
     * data can be passed using *@Requestparam*, *@PathVariable*, *@RequestBody*, ...
     * refers to service
   * Service
-    * Annotate with *@Component*
+    * annotate with *@Component*
     * refers to repository
- * *`Kafka Message Broker`*
-   * *in progress*
- * *`Docker orchestration`*
-   * *in progress*
+* *`Kafka Message Broker`*
+  * Dependencies
+    * spring-cloud-stream-binder-kafka
+  * Producer- & ConsumerChannel interfaces
+    * use *@Input(...)* and *@Output(...)* with name of the kafka topic
+  * Change "application.properties" file
+  * Add *@EnableBindings({...})* in main
+  * MessageGateway
+    * annotate class with *@MessageGateway*
+    * annotate message-method with *@Gateway(requestchannel = ...)*
+  * CommandHandler
+    * annotate class with *@Component*
+    * annotate listener-method with *@StreamListener(ConsumerChannel.\<channelname\>)*
+  * API-gateway
+    * @Bean RouteLocator gateway(RouteLocatorBuilder builder)
+    * builder.routes().route(r -> r.host("*").and().path("/reception/\*\*").uri("..."))
+* *`Docker orchestration`*
+  * create Dockerfile
+  * docker build -t \<name\> .
+  * "docker run --name <\name\> -e <\environment_variables\> -d <\tag\>" OR docker-compose.yml 
     

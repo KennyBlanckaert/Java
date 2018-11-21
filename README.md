@@ -75,5 +75,5 @@
 * *`Docker orchestration`*
   * create Dockerfile
   * docker build -t \<name\> .
-  * "docker run --name <\name\> -e <\environment_variables\> --volumes "\<source\>:\<target\>" -d <\tag\>" OR docker-compose.yml 
+  * "docker run --name \<name\> -e \<environment_variables\> --volumes "\<source\>:\<target\>" -d \<tag\>" OR docker-compose.yml 
     

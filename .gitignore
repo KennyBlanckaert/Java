@@ -26,3 +26,7 @@ settings.json
 ######################
 *.log
 *.sql
+/network/TicTacToeClient/nbproject/private/
+/network/TicTacToeServer/nbproject/private/
+/network/TicTacToeServer/build/
+/network/TicTacToeClient/build/

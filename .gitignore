@@ -17,10 +17,18 @@
 ######################
 node_modules/
 .vscode/
+
 /network/TicTacToeClient/nbproject/private/
+/network/TicTacToeClient/build/
 /network/TicTacToeServer/nbproject/private/
 /network/TicTacToeServer/build/
-/network/TicTacToeClient/build/
+
+/network/AuctionServer/nbproject/private/
+/network/AuctionServer/dist/
+/network/AuctionServer/build/
+/network/AuctionConsumers/nbproject/private/
+/network/AuctionConsumers/dist/
+/network/AuctionConsumers/build/
 
 # Settings #
 ######################
@@ -30,9 +38,3 @@ settings.json
 ######################
 *.log
 *.sql
-/network/AuctionServer/nbproject/private/
-/network/AuctionConsumers/build/
-/network/AuctionConsumers/nbproject/private/
-/network/AuctionConsumers/dist/
-/network/AuctionServer/dist/
-/network/AuctionServer/build/

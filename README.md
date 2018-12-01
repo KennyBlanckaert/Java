@@ -75,9 +75,12 @@
 * *`Docker orchestration`*
   * create Dockerfile
   * docker build -t \<name\> .
-  * "docker run --name \<name\> -e \<environment_variables\> --volumes "\<source\>:\<target\>" -d \<tag\>" OR docker-compose.yml 
- 
-> UNFINISHED!
+  * docker run --name \<name\> -e \<environment_variables\> --volumes "\<source\>:\<target\>" -d (run a single container)
+  * refer to the Kafka, Zookeeper, MySQL & Mongo containers in application.properties
+  * change h2 dependency in (MySQL) services to mysql-connector-java
+* *`For use:`*
+  * RUN docker-compose up in the "spring"-folder
+  * you may have to change the volumes-paths in docker-compose.yml 
     
 ### 3. Java Network Game using Sockets
 

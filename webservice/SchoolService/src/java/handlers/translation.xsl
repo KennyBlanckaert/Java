@@ -3,7 +3,7 @@
 <xsl:output method="xml"/>
     <xsl:template match="node()|@*">
         <xsl:copy>
-            <xsl:apply-templates />
+            <xsl:apply-templates/>
         </xsl:copy>
     </xsl:template> 
 

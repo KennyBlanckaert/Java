@@ -38,3 +38,7 @@ settings.json
 ######################
 *.log
 *.sql
+/network/DictServiceApplication/nbproject/private/
+/network/DictServiceApplication/build/
+/network/test/nbproject/private/
+/network/test/build/

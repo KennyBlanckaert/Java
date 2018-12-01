@@ -76,11 +76,23 @@
   * create Dockerfile
   * docker build -t \<name\> .
   * "docker run --name \<name\> -e \<environment_variables\> --volumes "\<source\>:\<target\>" -d \<tag\>" OR docker-compose.yml 
+ 
+> UNFINISHED!
     
 ### 3. Java Network Game using Sockets
 
-* *`Add Steps`*
+* *`Server`*
+  * TicTacToeServer 
+     * initializes lobby (BlockingQueue) & starts 2 thread that use the BlockingQueue:
+     * one thread uses a ServerSocket for accepting connections (adds players to lobby)
+     * one thread takes 2 players from the lobby to create a game
+     * the Game class contains the logic. Keeps waiting for (valid) moves & fills playerboard
+     * communicates with the Player class that communicates with the client using a Socket (BufferedReader + PrintWriter)
+  * TicTacToeClient
+     * intializes a socket for communication (BufferedReader + PrintWriter)
+     * updates the boardFrame using an Observer/Listener
+     * stays in an endless loop parsing and sending commands until the players want to quit
 
-### 4. JAVA JMS 
+### 4. Java JMS 
 
 * *`Add Steps`*

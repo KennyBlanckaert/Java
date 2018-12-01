@@ -50,6 +50,8 @@ services:
       - mysql
       - kafka
       - zookeeper
+    volumes:
+      - "/home/student/Documents/java/spring/patient:/app"
 
   reception:
     image: reception:latest
@@ -64,7 +66,7 @@ services:
       - kafka
       - zookeeper
     volumes:
-      - "/home/student/Documents/java/reception:/app"
+      - "/home/student/Documents/java/spring/reception:/app"
 
   ward:
     image: ward:latest
@@ -79,7 +81,7 @@ services:
       - kafka
       - zookeeper
     volumes:
-      - "/home/student/Documents/java/ward:/app"
+      - "/home/student/Documents/java/spring/ward:/app"
 
   finance:
     image: finance:latest
@@ -94,7 +96,7 @@ services:
       - kafka
       - zookeeper
     volumes:
-      - "/home/student/Documents/java/finance:/app"
+      - "/home/student/Documents/java/spring/finance:/app"
 
   api_gateway:
     image: api_gateway:latest
@@ -113,4 +115,4 @@ services:
       - ward
       - finance
     volumes:
-      - "/home/student/Documents/java/api_gateway:/app"      
+      - "/home/student/Documents/java/spring/api_gateway:/app"      

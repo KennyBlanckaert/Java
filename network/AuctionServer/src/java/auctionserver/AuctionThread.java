@@ -20,12 +20,15 @@ import java.util.LinkedList;
 import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
 import javax.jms.Destination;
 import javax.jms.JMSContext;
 import javax.jms.JMSException;
 import javax.jms.Message;
+import javax.jms.MessageProducer;
 import javax.jms.Queue;
+import javax.jms.Session;
 
 /**
  *

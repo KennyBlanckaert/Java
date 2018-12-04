@@ -5,15 +5,12 @@
  */
 package consumers;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 import javax.annotation.Resource;
 import javax.jms.ConnectionFactory;
 import javax.jms.JMSConsumer;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
-import javax.jms.Topic;
 
 /**
  *

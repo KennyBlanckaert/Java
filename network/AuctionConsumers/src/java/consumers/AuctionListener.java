@@ -25,7 +25,6 @@ public class AuctionListener implements MessageListener {
             String message = m.getBody(String.class);
             
             LOGGER.log(Level.INFO, "MESSAGE RECEIVED");
-            System.out.println(message);
             
             if (message.contains("SOLD FOR")) {
                 System.out.println(message);

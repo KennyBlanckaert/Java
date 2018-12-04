@@ -30,7 +30,6 @@ public class Main {
      *      --restype javax.jms.Queue 
      *      --property Name=PhysicalQueue 
      *      jms/MyQueue
-     *
      */
     @Resource(lookup = "jms/MyQueue") 
     private static Queue queue; 

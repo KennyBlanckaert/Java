@@ -11,10 +11,6 @@ services:
     image: patient:latest
     deploy:
       replicas: 2
-    links:
-      - patient-database
-    depends_on:
-      - patient-database
     volumes:
       - "/home/student/Documents/Java/spring/patient/:/app/"
 
@@ -24,9 +20,5 @@ services:
       mode: global
     ports:
       - 80:8080    
-    links:
-      - patient
-    depends_on:
-      - patient
     volumes:
       - "/home/student/Documents/Java/spring/api_gateway/:/app/"

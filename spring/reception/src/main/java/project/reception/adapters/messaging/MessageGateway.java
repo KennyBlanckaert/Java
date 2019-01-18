@@ -11,9 +11,6 @@ public interface MessageGateway {
 	@Gateway(requestChannel = ProducerChannel.ASSIGN_BED)
 	void assignBed(HospitalStay hospitalStay);
 	
-	@Gateway(requestChannel = ProducerChannel.OPEN_INVOICE)
-	void openInvoice(HospitalStay hospitalStay);
-	
 	@Gateway(requestChannel = ProducerChannel.CHECK_IN_COMPLETED)
 	void checkInResult(HospitalStay hospitalStay);
 }

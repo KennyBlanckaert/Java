@@ -42,25 +42,4 @@ public class CommandHandler {
 		catch (JsonParseException e) { e.printStackTrace(); } 
 		catch (IOException e) { e.printStackTrace(); }
 	}
-	
-	@StreamListener(ConsumerChannel.OPEN_INVOICE_RESULT)
-	public void invoiceOpened(String invoice) {
-		System.out.println("Reception OPEN_INVOICE_RESULT recieved: " + invoice);
-		try {
-			ObjectMapper mapper = new ObjectMapper();
-			JsonNode jsonNode = mapper.readTree(invoice);	
-			
-			String invocieId = jsonNode.get("id").asText();
-			String patientId = jsonNode.get("patientId").asText();
-			
-			if ((invocieId == "null") || (invocieId == null) || invocieId.isEmpty()) {
-				// not yet implemented
-			} else {
-				// not yet implemented
-			}			
-
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
 }

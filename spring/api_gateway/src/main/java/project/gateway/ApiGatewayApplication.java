@@ -16,8 +16,10 @@ public class ApiGatewayApplication {
 	@Bean
 	public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
 	    return builder.routes()	
-				.route(r -> r.host("*").and().path("/patient/**").uri("http://Patient:2222"))
-				.route(r -> r.host("*").and().path("/reception/**").uri("http://Reception:2223"))								
+				.route(r -> r.host("*").and().path("/patient/**").uri("http://patient:2222"))
+				.route(r -> r.host("*").and().path("/finance/**").uri("http://finance:2225"))		
+				.route(r -> r.host("*").and().path("/ward/**").uri("http://ward:2224"))	
+				.route(r -> r.host("*").and().path("/reception/**").uri("http://reception:2223"))	
 		.build();
 	  }
 }

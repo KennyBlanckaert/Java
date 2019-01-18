@@ -18,17 +18,17 @@ public class FinanceRestController {
 	private FinanceService service;
 	
 	// Rest calls
-	@RequestMapping(value="/invoices", method=RequestMethod.GET)
+	@RequestMapping(value="/finance", method=RequestMethod.GET)
 	public List<Invoice> getInvoices() {
 		return service.getInvoices();
 	}
 	
-	@RequestMapping(value="/invoice/search", method=RequestMethod.GET)
+	@RequestMapping(value="/finance/search", method=RequestMethod.GET)
 	public List<Invoice> getInvoicesByCost(@RequestParam("cost") double cost) {
 		return service.getInvoicesByCost(cost);
 	}
 	
-	@RequestMapping(value="/invoice/unpaid", method=RequestMethod.GET)
+	@RequestMapping(value="/finance/unpaid", method=RequestMethod.GET)
 	public List<Invoice> getInvoicesByStatusNotPaid() {
 		return service.getInvoicesByStatusNotPaid();
 	}

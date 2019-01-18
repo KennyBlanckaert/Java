@@ -28,17 +28,4 @@ public class FinanceService {
 	public List<Invoice> getInvoicesByStatusNotPaid() {
 		return repository.findByStatusNotPaid();
 	}
-	
-	// Remote service calls
-	public  Invoice openInvoice(HospitalStay hospitalStay) {		
-		Invoice invoice = new Invoice(hospitalStay.getPatientID(), hospitalStay.getId());
-		if (repository.findByPatientIdAndStatusNotPaid(hospitalStay.getPatientID()).isEmpty()) {
-			invoice.open();
-			repository.save(invoice);
-		} else {
-			invoice.setStatus(Status.OpenFailed);
-		}
-				
-		return invoice;
-	}
 }

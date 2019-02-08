@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  patient-database:
+    image: mysql:8
+    environment:
+      - MYSQL_ROOT_PASSWORD=Azerty123
+      - MYSQL_DATABASE=Patient
+
+  patient:
+    image: patient:latest
+    deploy:
+      replicas: 2
+    volumes:
+      - "/home/student/Documents/Java/spring/patient/:/app/"
+
+  api-gateway:
+    image: api-gateway:latest
+    deploy:
+      mode: global
+    ports:
+      - "80:8080"    
+    volumes:
+      - "/home/student/Documents/Java/spring/api_gateway/:/app/"
+
+  prometheus:
+    image: prom/prometheus
+    depends_on:
+      - patient
+    volumes:
+      - "/home/student/Documents/Java/spring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+    ports:
+      - "9090:9090"
+    deploy:
+      replicas: 1

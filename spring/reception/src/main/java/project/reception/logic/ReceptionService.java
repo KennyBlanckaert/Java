@@ -57,5 +57,4 @@ public class ReceptionService {
 		saga.checkInSuccesfull(hospitalStay, bedID);
 		repository.save(hospitalStay);
 	}
-	
 }

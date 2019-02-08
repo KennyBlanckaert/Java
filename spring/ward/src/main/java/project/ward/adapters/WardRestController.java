@@ -18,12 +18,12 @@ public class WardRestController {
 	private WardService service;
 	
 	// Rest calls
-	@RequestMapping(value="/wards", method=RequestMethod.GET)
+	@RequestMapping(value="/ward", method=RequestMethod.GET)
 	public List<Ward> getWards() {
 		return service.getWards();
 	}
 	
-	@RequestMapping(value="/wards/{id}", method=RequestMethod.GET)
+	@RequestMapping(value="/ward/{id}", method=RequestMethod.GET)
 	public Ward getWardByID(@PathVariable("id") Long id) {
 		return service.getWardByID(id);
 	}

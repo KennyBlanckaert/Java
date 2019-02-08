@@ -20,27 +20,27 @@ public class PatientRestController {
 	private PatientService service;
 	
 	// Rest calls
-    @RequestMapping(value="/patients", method=RequestMethod.GET)
+    @RequestMapping(value="/patient", method=RequestMethod.GET)
     public List<Patient> getPatients() {
         return service.getPatients();
     }
     
-    @RequestMapping(value="/patients/{id}", method=RequestMethod.GET)
+    @RequestMapping(value="/patient/{id}", method=RequestMethod.GET)
     public Patient getPatient(@PathVariable("id") Long id) {
     	return service.getPatient(id);
     }
     
-    @RequestMapping(value="/patients/search", method=RequestMethod.GET)
+    @RequestMapping(value="/patient/search", method=RequestMethod.GET)
     public List<Patient> getPatientsByFirstname(@RequestParam("name") String firstname) {
     	return service.getPatientsByFirstname(firstname);
     }
     
-    @RequestMapping(value="/patients/youth", method=RequestMethod.GET)
+    @RequestMapping(value="/patient/youth", method=RequestMethod.GET)
     public List<Patient> getYoungPatients() {
     	return service.getYoungPatients();
     }
     
-    @RequestMapping(value="/patients/add", method=RequestMethod.PUT)
+    @RequestMapping(value="/patient/add", method=RequestMethod.PUT)
     public boolean addPatient(@RequestBody Patient patient) {
     	return service.addPatient(patient);
     }

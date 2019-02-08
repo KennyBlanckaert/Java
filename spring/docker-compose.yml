@@ -1,19 +1,31 @@
 version: '3'
 
 services:
-  mysql:
-    image: mysql:8
-    container_name: MySQL
-    environment:
-      MYSQL_ROOT_PASSWORD: Azerty123
-      MYSQL_DATABASE: Patient
 
-  mongo:
-    image: mongo:3.2
-    container_name: Mongo
+  ward-database:
+    image: mysql:8
+    container_name: ward-database
     environment:
-      MONGO_INITDB_ROOT_USERNAME: root
-      MONGO_INITDB_ROOT_PASSWORD: Azerty123
+      - MYSQL_ROOT_PASSWORD=Azerty123
+      - MYSQL_DATABASE=Ward
+
+  reception-database:
+    image: mysql:8
+    container_name: reception-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=Azerty123
+      - MYSQL_DATABASE=Reception
+
+  patient-database:
+   image: mysql:8
+   container_name: patient-database
+   environment:
+     - MYSQL_ROOT_PASSWORD=Azerty123
+     - MYSQL_DATABASE=Patient
+
+  finance-database:
+   image: mongo:3.2
+   container_name: finance-database
 
   kafka:
     image: confluentinc/cp-kafka:latest
@@ -34,83 +46,72 @@ services:
     image: confluentinc/cp-zookeeper:latest
     container_name: Zookeeper
     ports:
-      - '2181:2181'
+      - 2181:2181
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
 
-  patient:
-    image: patient:latest
-    container_name: Patient
-    restart: always
+  ward:
+    image: ward:latest
+    container_name: ward
     links:
-      - mysql
       - kafka
       - zookeeper
+      - ward-database
     depends_on:
-      - mysql
       - kafka
       - zookeeper
+      - ward-database
+    volumes:
+      - "/home/student/Documents/Java/spring/ward/:/app/"
 
   reception:
     image: reception:latest
-    container_name: Reception
-    restart: always
+    container_name: reception
     links:
-      - mysql
       - kafka
       - zookeeper
+      - reception-database
     depends_on:
-      - mysql
       - kafka
       - zookeeper
+      - reception-database
     volumes:
-      - "/home/student/Documents/java/reception:/app"
+      - "/home/student/Documents/Java/spring/reception/:/app/"
 
-  ward:
-    image: ward:latest
-    container_name: Ward
-    restart: always
+  patient:
+    image: patient:latest
+    container_name: patient
     links:
-      - mysql
-      - kafka
-      - zookeeper
+      - patient-database
     depends_on:
-      - mysql
-      - kafka
-      - zookeeper
+      - patient-database
     volumes:
-      - "/home/student/Documents/java/ward:/app"
+      - "/home/student/Documents/Java/spring/patient/:/app/"
 
   finance:
     image: finance:latest
-    container_name: Finance
-    restart: always
+    container_name: finance
     links:
-      - mongo
-      - kafka
-      - zookeeper
+      - finance-database
     depends_on:
-      - mongo
-      - kafka
-      - zookeeper
+      - finance-database
     volumes:
-      - "/home/student/Documents/java/finance:/app"
+      - "/home/student/Documents/Java/spring/finance/:/app/"
 
-  api_gateway:
-    image: api_gateway:latest
-    container_name: API-gateway
+  api-gateway:
+    image: api-gateway:latest
+    container_name: api-gateway
     ports:
-      - "80:8080"    
-    restart: always
+      - 80:8080    
     links:
       - patient
-      - reception
-      - ward
       - finance
+      - ward
+      - reception 
     depends_on:
       - patient
-      - reception
-      - ward
       - finance
+      - ward
+      - reception
     volumes:
-      - "/home/student/Documents/java/api_gateway:/app"      
+      - "/home/student/Documents/Java/spring/api_gateway/:/app/"

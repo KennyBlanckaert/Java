@@ -19,12 +19,12 @@ import project.reception.logic.ReceptionService;
 public class ReceptionRestController {
 	
 	@Autowired
-	ReceptionService service;
+	private ReceptionService service;
 	
 	Map<String, DeferredResult<HospitalStay>> deferredResults = new HashMap<String, DeferredResult<HospitalStay>>();
 	
 	// Rest calls
-	@RequestMapping(value="/reception/hospital_stays", method=RequestMethod.GET)
+	@RequestMapping(value="/reception", method=RequestMethod.GET)
     public List<HospitalStay> getHospitalStays() {
         return service.getHospitalStays();
     }

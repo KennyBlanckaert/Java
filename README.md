@@ -10,6 +10,6 @@
 
 ## Network
 
-##### 1. TicTacToe Game using Sockets
+##### 1. Game using Sockets (TicTacToe)
 
-##### 2. JMS application + Message broker
+##### 2. JMS application + Message broker (AuctionServer)

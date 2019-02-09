@@ -1,21 +1,34 @@
 package entities.coach;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
 import entities.service.FortuneService;
 
-public class BaseballCoach implements Coach {
+@Component("footballCoach")
+public class FootballCoach implements Coach {
 
 	// Fields
+	@Value("${coach.name}")
 	private String name;
+	
+	@Value("${coach.age}")
 	private int age;
+	
+	// Field Injection
+	@Autowired
 	private FortuneService fortuneService;
 	
-	// Default constructor
-	public BaseballCoach() {
+	// Default Constructor
+	public FootballCoach() {
 		
 	}
 	
-	// Construction Injection
-	public BaseballCoach(FortuneService fortuneService) {
+	// Constructor Injection (default since Spring 4.3: when annotation is left out and there is only one constructor, this is used automatically)
+	// Recommended over Setter Injection: dependencies can be final (robust and thread-safe)
+	@Autowired
+	public FootballCoach(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 	
@@ -32,11 +45,13 @@ public class BaseballCoach implements Coach {
 		return fortuneService;
 	}
 	
-	// Setters
+	// Setter Injection
+	@Autowired
 	public void setFortuneService(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 
+	// Setters
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -44,11 +59,11 @@ public class BaseballCoach implements Coach {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	// Functions
 	@Override
 	public String getWorkout() {
-		return "Spend 40 minutes on batting practice";
+		return "Play a 30 minute match against another player";
 	}
 
 	@Override

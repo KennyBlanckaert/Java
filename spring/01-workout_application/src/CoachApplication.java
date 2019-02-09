@@ -6,6 +6,7 @@ import entities.coach.Coach;
 
 public class CoachApplication {
 	
+	// Manual creation of beans in 'applicationContext.xml'
 	public static void main(String[] args) {	
 		
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");

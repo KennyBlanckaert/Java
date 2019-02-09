@@ -1,6 +1,7 @@
+package workout;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import entities.coach.Coach;
+import workout.entities.coach.Coach;
 
 public class ScanCoachApplication {
 
@@ -16,7 +17,5 @@ public class ScanCoachApplication {
 		System.out.println(coach.getFortune());
 		
 		context.close();
-
 	}
-
 }

@@ -1,13 +1,17 @@
-package entities.coach;
+package workout.entities.coach;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import entities.service.FortuneService;
+import workout.entities.service.FortuneService;
 
-@Component("baseballCoach")
-public class BaseballCoach implements Coach {
+@Component
+//@Scope("prototype")
+public class FootballCoach implements Coach {
 
 	// Fields
 	@Value("${coach.name}")
@@ -20,15 +24,16 @@ public class BaseballCoach implements Coach {
 	@Autowired
 	private FortuneService fortuneService;
 	
-	// Default constructor
-	public BaseballCoach() {
+	// Default Constructor
+	public FootballCoach() {
 		
 	}
 	
 	// Constructor Injection (default since Spring 4.3: when annotation is left out and there is only one constructor, this is used automatically)
 	// Recommended over Setter Injection: dependencies can be final (robust and thread-safe)
+	// Be consistent in usage
 	@Autowired
-	public BaseballCoach(FortuneService fortuneService) {
+	public FootballCoach(FortuneService fortuneService) {
 		this.fortuneService = fortuneService;
 	}
 	
@@ -59,11 +64,11 @@ public class BaseballCoach implements Coach {
 	public void setAge(int age) {
 		this.age = age;
 	}
-	
+
 	// Functions
 	@Override
 	public String getWorkout() {
-		return "Spend 40 minutes on batting practice";
+		return "Play a 30 minute match against another player";
 	}
 
 	@Override
@@ -74,5 +79,17 @@ public class BaseballCoach implements Coach {
 	@Override
 	public String welcome() {
 		return "Hello! I'm " + this.name + ", your trainer for today.";
+	}
+	
+	// Lifecyle functions
+	@PostConstruct
+	public void onStartup() {
+		System.out.println("Starting the application");
+		
+	}
+
+	@PreDestroy
+	public void onDestroy() {
+		System.out.println("Terminating...");
 	}
 }

@@ -8,19 +8,22 @@
     http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<!-- Define Properties File -->
-	<context:property-placeholder location="classpath:coach.properties"/> 
+	<context:property-placeholder location="classpath:application.properties"/> 
 	
     <!-- Define your beans here -->
  	<bean id="myFortuneService" 
- 		class="entities.service.HappyFortuneService">	
+ 		class="workout.entities.service.HappyFortuneService">	
+ 		
+ 		<property name="fortunes" value="${workout.fortunes}"/>
  	</bean>
  	
  	<bean id="myCoach" 
- 		class="entities.coach.FootballCoach"
+ 		class="workout.entities.coach.FootballCoach"
+ 		init-method="onStartup"
+ 		destroy-method="onDestroy"
  		scope="prototype">		<!-- prototype VS (default) singleton -->	
- 						
- 		<!-- init-method="..." -->
- 		<!-- destroy-method="..." -->
+ 								<!-- as described by the Spring guide, the destroy-method is not called for the prototype scope -->
+ 					
  		
  		<!-- Choose Setter/Constructor Injection -->
  		<constructor-arg ref="myFortuneService"/>

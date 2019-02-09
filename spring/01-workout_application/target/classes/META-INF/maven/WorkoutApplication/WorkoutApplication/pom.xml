@@ -29,7 +29,13 @@
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
-	    <version>3.0.2.RELEASE</version>
+	    <version>4.0.0.RELEASE</version>
+	</dependency>
+	
+	<dependency>
+	    <groupId>cglib</groupId>
+	    <artifactId>cglib</artifactId>
+	    <version>3.0</version>
 	</dependency>
   </dependencies>
   

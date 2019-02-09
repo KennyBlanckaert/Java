@@ -1,8 +1,9 @@
+package workout;
 
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import entities.coach.Coach;
+import workout.entities.coach.Coach;
 
 public class CoachApplication {
 	

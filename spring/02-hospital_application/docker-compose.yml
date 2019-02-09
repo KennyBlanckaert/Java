@@ -62,7 +62,7 @@ services:
       - zookeeper
       - ward-database
     volumes:
-      - "/home/student/Documents/Java/spring/ward/:/app/"
+      - "./ward/:/app/"
 
   reception:
     image: reception:latest
@@ -76,7 +76,7 @@ services:
       - zookeeper
       - reception-database
     volumes:
-      - "/home/student/Documents/Java/spring/reception/:/app/"
+      - "./reception/:/app/"
 
   patient:
     image: patient:latest
@@ -86,7 +86,7 @@ services:
     depends_on:
       - patient-database
     volumes:
-      - "/home/student/Documents/Java/spring/patient/:/app/"
+      - "./patient/:/app/"
 
   finance:
     image: finance:latest
@@ -96,7 +96,7 @@ services:
     depends_on:
       - finance-database
     volumes:
-      - "/home/student/Documents/Java/spring/finance/:/app/"
+      - "./finance/:/app/"
 
   api-gateway:
     image: api-gateway:latest
@@ -114,4 +114,4 @@ services:
       - ward
       - reception
     volumes:
-      - "/home/student/Documents/Java/spring/api_gateway/:/app/"
+      - "./api_gateway/:/app/"

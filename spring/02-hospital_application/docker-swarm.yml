@@ -12,7 +12,7 @@ services:
     deploy:
       replicas: 2
     volumes:
-      - "/home/student/Documents/Java/spring/patient/:/app/"
+      - "./patient/:/app/"
 
   api-gateway:
     image: api-gateway:latest
@@ -21,14 +21,14 @@ services:
     ports:
       - "80:8080"    
     volumes:
-      - "/home/student/Documents/Java/spring/api_gateway/:/app/"
+      - "./api_gateway/:/app/"
 
   prometheus:
     image: prom/prometheus
     depends_on:
       - patient
     volumes:
-      - "/home/student/Documents/Java/spring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
+      - "./prometheus/prometheus.yml:/etc/prometheus/prometheus.yml"
     ports:
       - "9090:9090"
     deploy:

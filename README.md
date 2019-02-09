@@ -5,8 +5,10 @@
 ##### 1. Java Web Service with MySQL & Java Web Application using PHP mysqli
  
 ## Spring & Hibernate 
+
+##### 1. From manual beans to automatic beans with annotations/injection (workout application)
  
-##### 1. Spring Boot persistence, messaging, REST & Docker (hospital application)
+##### 2. Spring Boot persistence, messaging, REST & Docker (hospital application)
 
 ## Network
 

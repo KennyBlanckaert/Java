@@ -30,15 +30,20 @@ node_modules/
 /network/AuctionConsumers/dist/
 /network/AuctionConsumers/build/
 
+/network/DictServiceApplication/nbproject/private/
+/network/DictServiceApplication/build/
+/network/test/nbproject/private/
+/network/test/build/
+
+/spring/01-workout_application/.settings/
+
 # Settings #
 ######################
 settings.json
+/spring/01-workout_application/.classpath
+/spring/01-workout_application/.project
 
 # Logs and databases #
 ######################
 *.log
 *.sql
-/network/DictServiceApplication/nbproject/private/
-/network/DictServiceApplication/build/
-/network/test/nbproject/private/
-/network/test/build/

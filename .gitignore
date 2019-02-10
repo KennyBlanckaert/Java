@@ -36,12 +36,15 @@ node_modules/
 /network/test/build/
 
 /spring/01-workout_application/.settings/
+/spring/01-spring_mvc/.settings/
 
 # Settings #
 ######################
 settings.json
 /spring/01-workout_application/.classpath
 /spring/01-workout_application/.project
+/spring/02-spring_mvc/.classpath
+/spring/02-spring_mvc/.project
 
 # Logs and databases #
 ######################

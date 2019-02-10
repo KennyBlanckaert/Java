@@ -1,0 +1,117 @@
+version: '3'
+
+services:
+
+  ward-database:
+    image: mysql:8
+    container_name: ward-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=Azerty123
+      - MYSQL_DATABASE=Ward
+
+  reception-database:
+    image: mysql:8
+    container_name: reception-database
+    environment:
+      - MYSQL_ROOT_PASSWORD=Azerty123
+      - MYSQL_DATABASE=Reception
+
+  patient-database:
+   image: mysql:8
+   container_name: patient-database
+   environment:
+     - MYSQL_ROOT_PASSWORD=Azerty123
+     - MYSQL_DATABASE=Patient
+
+  finance-database:
+   image: mongo:3.2
+   container_name: finance-database
+
+  kafka:
+    image: confluentinc/cp-kafka:latest
+    container_name: Kafka
+    ports:
+      - '9092:9092'
+    links:
+      - zookeeper
+    depends_on:
+      - zookeeper
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: Zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://Kafka:9092
+      KAFKA_OFFSET_TOPIC_REPLICATION_FACTOR: 1
+  
+  zookeeper:
+    image: confluentinc/cp-zookeeper:latest
+    container_name: Zookeeper
+    ports:
+      - 2181:2181
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+
+  ward:
+    image: ward:latest
+    container_name: ward
+    links:
+      - kafka
+      - zookeeper
+      - ward-database
+    depends_on:
+      - kafka
+      - zookeeper
+      - ward-database
+    volumes:
+      - "./ward/:/app/"
+
+  reception:
+    image: reception:latest
+    container_name: reception
+    links:
+      - kafka
+      - zookeeper
+      - reception-database
+    depends_on:
+      - kafka
+      - zookeeper
+      - reception-database
+    volumes:
+      - "./reception/:/app/"
+
+  patient:
+    image: patient:latest
+    container_name: patient
+    links:
+      - patient-database
+    depends_on:
+      - patient-database
+    volumes:
+      - "./patient/:/app/"
+
+  finance:
+    image: finance:latest
+    container_name: finance
+    links:
+      - finance-database
+    depends_on:
+      - finance-database
+    volumes:
+      - "./finance/:/app/"
+
+  api-gateway:
+    image: api-gateway:latest
+    container_name: api-gateway
+    ports:
+      - 80:8080    
+    links:
+      - patient
+      - finance
+      - ward
+      - reception 
+    depends_on:
+      - patient
+      - finance
+      - ward
+      - reception
+    volumes:
+      - "./api_gateway/:/app/"

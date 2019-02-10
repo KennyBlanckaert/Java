@@ -36,7 +36,7 @@ node_modules/
 /network/test/build/
 
 /spring/01-workout_application/.settings/
-/spring/01-spring_mvc/.settings/
+/spring/02-spring_mvc/.settings/
 
 # Settings #
 ######################

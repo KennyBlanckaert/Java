@@ -8,5 +8,7 @@
 		<a href="guest/showForm">Register participant</a>
 		<br></br>
 		<a href="student/showForm">Register student</a>
+		<br></br>
+		<a href="teacher/showForm">Register teacher</a>
 	</body>
 </html>

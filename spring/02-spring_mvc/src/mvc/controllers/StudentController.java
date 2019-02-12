@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import mvc.entities.Student;
 
+/* MVC controller with included form tags */
 @Controller
 @RequestMapping("/student")
 public class StudentController {

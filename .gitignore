@@ -37,6 +37,7 @@ node_modules/
 
 /spring/01-workout_application/.settings/
 /spring/02-spring_mvc/.settings/
+/spring/03-hibernate/.settings/
 
 # Settings #
 ######################
@@ -45,6 +46,8 @@ settings.json
 /spring/01-workout_application/.project
 /spring/02-spring_mvc/.classpath
 /spring/02-spring_mvc/.project
+/spring/03-hibernate/.classpath
+/spring/03-hibernate/.project
 
 # Logs and databases #
 ######################

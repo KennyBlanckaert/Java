@@ -4,13 +4,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-//@Table(name="student")	only when name is different
+@Table(name="students")	
 public class Student {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	//@Column("id")
 	private Integer id;
 	
@@ -22,6 +23,7 @@ public class Student {
 	
 	// Constructor
 	public Student(String firstname, String lastname) {
+		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
 	}

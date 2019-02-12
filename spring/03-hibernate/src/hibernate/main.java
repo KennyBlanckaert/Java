@@ -1,28 +1,42 @@
 package hibernate;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+
+import hibernate.entities.Student;
 
 public class main {
 
-	// For testing purpose only
-	// See hibernate.cfg.xml for the config file
 	public static void main(String[] args) {
 		
-		// serverTimezone to solve unrecognized timezone error
-		String connection_string = "jdbc:mysql://localhost:3306/School?useSSL=false&serverTimezone=UTC";
-		String user = "root";
-		String password = "Azerty123";
+		SessionFactory factory = new Configuration()
+								.configure("hibernate.cfg.xml")
+								.addAnnotatedClass(Student.class)
+								.buildSessionFactory();
 		
-		Connection connection = null;
+		Session session = factory.getCurrentSession();
+		
 		try {
-			connection = DriverManager.getConnection(connection_string, user, password);
-			System.out.println("Connection successful");
+			System.out.println("Start!");
+			Student student = new Student("hibernate", "student");
+			System.out.println("1!");
+			session.beginTransaction();
+			System.out.println("2!");
+			session.save(student);
+			System.out.println("3!");
+			session.getTransaction().commit();
+			
+			System.out.println("Done!");
 		}
-		catch (SQLException e){
-			System.out.println("Could not connect to the database.");
+		catch(Exception e) {
 			e.printStackTrace();
-		}	
+			session.close();
+			factory.close();
+		}
+		finally {
+			session.close();
+			factory.close();
+		}
 	}
 }

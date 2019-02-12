@@ -7,8 +7,10 @@
 ## Spring & Hibernate 
 
 ##### 1. From manual beans to automatic beans with annotations/injection (workout application)
+
+##### 2. Spring MVC - Controllers, Custom annotations, Form tags (spring_mvc)
  
-##### 2. Spring Boot persistence, messaging, REST & Docker (hospital application)
+##### 3. Spring Boot persistence, messaging, REST & Docker (hospital application)
 
 ## Network
 

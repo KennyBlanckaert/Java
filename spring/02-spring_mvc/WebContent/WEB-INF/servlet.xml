@@ -26,7 +26,7 @@
 	<!-- Add support for conversion, formatting and validation support -->
 	<mvc:annotation-driven/>
 
-	<!-- Define Spring MVC view resolver: /WEB-INF/view/home.jsp -->
+	<!-- Define Spring MVC view resolver: /WEB-INF/view/___.jsp -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/" />

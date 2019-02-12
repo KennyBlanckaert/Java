@@ -21,6 +21,9 @@ public class Student {
 	//@Column("lastname")
 	private String lastname;
 	
+	// Default constructor
+	public Student() { }
+	
 	// Constructor
 	public Student(String firstname, String lastname) {
 		this.id = id;

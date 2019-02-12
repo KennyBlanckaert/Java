@@ -21,18 +21,39 @@ public class main {
 		
 		try {
 			Student student = new Student("hibernate", "student");
-			
+			 
 			// Write
 			session.beginTransaction();
 			session.save(student);
 			session.getTransaction().commit();
 			
-			// Read examples
-			session.createQuery("FROM students").list();
-			session.createQuery("FROM students s WHERE s.firstname LIKE 'Mon%'").list();
-			session.createQuery("FROM students s WHERE s.lastname = 'Luffy'").list();
+			/* More examples (Session/EntityManager is closed once committed)	
+			 
+				// Read examples
+				student = session.get(Student.class, 12);
+				session.createQuery("FROM Student").list();
+				session.createQuery("FROM Student s WHERE s.firstname LIKE 'Mon%'").list();
+				session.createQuery("FROM Student s WHERE s.lastname = 'Luffy'").list();
+				
+				// Update examples
+				session.beginTransaction();
+				student.setLastname("example");
+				session.save(student);
+				session.getTransaction().commit();
+				
+				session.createQuery("UPDATE Student s SET s.description = 'student from UGent'").executeUpdate();
+				
+				// Delete example
+				session.beginTransaction();
+				student = session.get(Student.class, 12);
+				session.delete(student);
+				session.getTransaction().commit();
+				
+				session.createQuery("DELETE FROM Student s WHERE s.id = 12").executeUpdate();
+			*/
+				
+				System.out.println("Done!");
 			
-			System.out.println("Done!");
 			
 			/* PS:
 			 * 		queries are show on stdout because of the show_sql property in the hibernate.cfg.xml file

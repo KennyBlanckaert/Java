@@ -3,6 +3,7 @@ package hibernate.entities;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -24,15 +25,17 @@ public class Course {
 	@Column(name="name")
 	private String name;
 	
+	// always created the appropriate getters/setters
+	
 	// Uni-direction relationship: each course contains one teacher (@OneToOne only in Course.class)
 	// Bi-direction relationship: + each teacher contains one course (@OneToOne in Teacher.class and Course.class)
 	// @OneToOne(cascade=CascadeType.DETACH)
 	// @JoinColumn(name="teacherID")
 	// private Teacher teacher;
 	
-	// Multiple courses belong to one teacher & one teacher belongs to a course
+	// Multiple courses belong to a teacher & one teacher belongs to a course
 	// (@OneToMany in Teacher.class and @ManyToOne in Course.class)
-	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@ManyToOne(fetch=FetchType.LAZY, cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name="teacherID")
 	private Teacher teacher;
 

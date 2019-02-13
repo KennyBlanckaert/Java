@@ -8,7 +8,14 @@ import hibernate.entities.Course;
 import hibernate.entities.Student;
 import hibernate.entities.Teacher;
 
-// @ManyToOne & @OneToMany & @JoinColumn annotations
+/* @ManyToOne & @OneToMany & @JoinColumn annotations
+ * 
+ * (loading default settings)
+ * @OneToOne --- eager loading
+ * @ManyToOne --- eager loading
+ * @OneToMany --- lazy loading
+ * @ManyToMany --- lazy loading
+ */
 public class oneToManyRelationShip {
 	public static void main(String[] args) {
 		
@@ -18,6 +25,7 @@ public class oneToManyRelationShip {
 								.addAnnotatedClass(Teacher.class)
 								.buildSessionFactory();
 		
+		// Session must be open continuously while using lazy loading (error is thrown otherwise)
 		Session session = factory.getCurrentSession();
 		
 		try {

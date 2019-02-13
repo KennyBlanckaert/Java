@@ -1,14 +1,12 @@
 package hibernate;
 
-import java.util.List;
-
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
 import hibernate.entities.Student;
 
-public class main {
+public class crud {
 
 	public static void main(String[] args) {
 		
@@ -20,6 +18,7 @@ public class main {
 		Session session = factory.getCurrentSession();
 		
 		try {
+			
 			Student student = new Student("hibernate", "student");
 			 
 			// Write

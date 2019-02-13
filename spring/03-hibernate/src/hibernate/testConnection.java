@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class test {
+public class testConnection {
 
 	// For testing purpose only
 	// See hibernate.cfg.xml for the config file

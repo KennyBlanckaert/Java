@@ -38,6 +38,7 @@ node_modules/
 /spring/01-workout_application/.settings/
 /spring/02-spring_mvc/.settings/
 /spring/03-hibernate/.settings/
+/spring/04-customer_tracker/.settings/
 
 # Settings #
 ######################
@@ -48,6 +49,8 @@ settings.json
 /spring/02-spring_mvc/.project
 /spring/03-hibernate/.classpath
 /spring/03-hibernate/.project
+/spring/04-customer_tracker/.classpath
+/spring/04-customer_tracker/.project
 
 # Logs and databases #
 ######################

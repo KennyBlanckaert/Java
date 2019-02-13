@@ -1,5 +1,8 @@
 package hibernate.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,8 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -29,6 +33,7 @@ public class Course {
 	
 	// Uni-direction relationship: each course contains one teacher (@OneToOne only in Course.class)
 	// Bi-direction relationship: + each teacher contains one course (@OneToOne in Teacher.class and Course.class)
+	//
 	// @OneToOne(cascade=CascadeType.DETACH)
 	// @JoinColumn(name="teacherID")
 	// private Teacher teacher;
@@ -38,13 +43,25 @@ public class Course {
 	@ManyToOne(fetch=FetchType.LAZY, cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name="teacherID")
 	private Teacher teacher;
+	
+	// Course can have multiple students, Student can have multiple courses
+	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@JoinTable(
+			name="courses_has_students",
+			joinColumns=@JoinColumn(name="courses_id"),
+			inverseJoinColumns=@JoinColumn(name="students_id")
+	)
+	private List<Student> students;
 
 	// Default constructor
-	public Course() { }
+	public Course() {
+		this.students = new ArrayList<>();
+	}
 	
 	// Constructor
 	public Course(String name) {
 		this.name = name;
+		this.students = new ArrayList<>();
 	}
 
 	// Getters
@@ -59,6 +76,12 @@ public class Course {
 	public Teacher getTeacher() {
 		return teacher;
 	}
+	
+	public List<Student> getStudents() {
+		return students;
+	}
+
+
 
 	// Setters
 	public void setId(Integer id) {
@@ -72,12 +95,18 @@ public class Course {
 	public void setTeacher(Teacher teacher) {
 		this.teacher = teacher;
 	}
-
+	
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+	
 	// Functions
 	@Override
 	public String toString() {
 		return "Course [id=" + id + ", name=" + name + "]";
 	}	
 	
-	
+	public void addStudent(Student student) {
+		this.students.add(student);
+	}
 }

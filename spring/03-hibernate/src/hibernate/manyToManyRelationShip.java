@@ -8,36 +8,40 @@ import hibernate.entities.Course;
 import hibernate.entities.Student;
 import hibernate.entities.Teacher;
 
-// @OneToOne & @JoinColumn annotations
-// This code is commented in the entity classes, but should also work just fine with the 1:m & m:1 relationship implementations
-public class oneToOneRelationShip {
+/* @ManyToOne & @OneToMany & @JoinColumn annotations
+ * 
+ * (loading default settings)
+ * @OneToOne --- eager loading
+ * @ManyToOne --- eager loading
+ * @OneToMany --- lazy loading
+ * @ManyToMany --- lazy loading		
+ */
+public class manyToManyRelationShip {
 	public static void main(String[] args) {
 		
 		SessionFactory factory = new Configuration()
 								.configure("hibernate.cfg.xml")
 								.addAnnotatedClass(Course.class)
-								.addAnnotatedClass(Teacher.class)
 								.addAnnotatedClass(Student.class)
+								.addAnnotatedClass(Teacher.class)
 								.buildSessionFactory();
 		
+		// Session must be open continuously while using lazy loading (error is thrown otherwise)
+		// To use data while session is closed, it must be loaded already when session was open
 		Session session = factory.getCurrentSession();
 		
 		try {
 			
 			session.beginTransaction();
 			
-			Course course = new Course("Spring");
+			Course course = new Course("hibernate");
 			session.save(course);
-			Teacher teacher = new Teacher("Bonita", "Applebum");
-			session.save(teacher);
 			
-			course.setTeacher(teacher);
-			session.save(course);	
+			Student student = new Student("Kenny", "Blanckaert");
+			student.addCourse(course);
+			session.save(student);
 			
 			session.getTransaction().commit();
-			
-			// Note: deletion of a course, will also delete the teacher when CascadingType = All
-			//		 other CascadingType require the relationship to be set to null
 			
 			System.out.println("Done");
 		}

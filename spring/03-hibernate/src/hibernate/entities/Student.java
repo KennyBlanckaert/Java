@@ -1,10 +1,18 @@
 package hibernate.entities;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -22,13 +30,25 @@ public class Student {
 	@Column(name="lastname")
 	private String lastname;
 	
+	/* Student has multiple courses, Course can have multiple students*/
+	@ManyToMany(fetch=FetchType.LAZY, cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
+	@JoinTable(
+			name="courses_has_students",
+			joinColumns=@JoinColumn(name="students_id"),
+			inverseJoinColumns=@JoinColumn(name="courses_id")
+	)
+	private List<Course> courses;
+	
 	// Default constructor
-	public Student() { }
+	public Student() { 
+		this.courses = new ArrayList<>();
+	}
 	
 	// Constructor
 	public Student(String firstname, String lastname) {
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.courses = new ArrayList<>();
 	}
 
 	// Getters
@@ -43,6 +63,12 @@ public class Student {
 	public String getLastname() {
 		return lastname;
 	}
+	
+	public List<Course> getCourses() {
+		return courses;
+	}
+
+
 
 	// Setters
 	public void setId(Integer id) {
@@ -56,10 +82,18 @@ public class Student {
 	public void setLastname(String lastname) {
 		this.lastname = lastname;
 	}
-
+	
+	public void setCourses(List<Course> courses) {
+		this.courses = courses;
+	}
+	
 	// Functions
 	@Override
 	public String toString() {
 		return "Student [id=" + id + ", firstname=" + firstname + ", lastname=" + lastname + "]";
+	}
+	
+	public void addCourse(Course course) {
+		this.courses.add(course);
 	}
 }

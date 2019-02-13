@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -30,21 +32,23 @@ public class Teacher {
 	@Column(name="lastname")
 	private String lastname;
 	
-	// always created the appropriate getters/setters
+	// always create the appropriate getters/setters
 	
 	// Uni-direction relationship: each course contains a teacher (@OneToOne only in Course.class)
 	// Bi-direction relationship: each teacher contains a course (@OneToOne in Teacher.class and Course.class)
-	//	@OneToOne(mappedBy="teacher", cascade=CascadeType.DETACH)
-	//	private Course course;
+	//
+	// @OneToOne(mappedBy="teacher", cascade=CascadeType.DETACH)
+	//private Course course;
 	
-	// Uni-direction relationship: multiple teacher belong to one course
-	// Bi-direction relationship: each teacher contains mulitple courses 
+	// Teacher can have multiple courses, Course can have only one teacher
 	// (@OneToMany in Teacher.class and @ManyToOne in Course.class)
 	@OneToMany(fetch=FetchType.LAZY, mappedBy="teacher", cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	private List<Course> courses;
 	
 	// Default constructor
-	public Teacher() { }
+	public Teacher() { 
+		this.courses = new ArrayList<>();
+	}
 	
 	// Constructor
 	public Teacher(String firstname, String lastname) {

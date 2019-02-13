@@ -14,7 +14,7 @@ import hibernate.entities.Teacher;
  * @OneToOne --- eager loading
  * @ManyToOne --- eager loading
  * @OneToMany --- lazy loading
- * @ManyToMany --- lazy loading
+ * @ManyToMany --- lazy loading		
  */
 public class oneToManyRelationShip {
 	public static void main(String[] args) {
@@ -23,20 +23,25 @@ public class oneToManyRelationShip {
 								.configure("hibernate.cfg.xml")
 								.addAnnotatedClass(Course.class)
 								.addAnnotatedClass(Teacher.class)
+								.addAnnotatedClass(Student.class)
 								.buildSessionFactory();
 		
 		// Session must be open continuously while using lazy loading (error is thrown otherwise)
+		// To use data while session is closed, it must be loaded already when session was open
 		Session session = factory.getCurrentSession();
 		
 		try {
 			
 			session.beginTransaction();
-			Teacher teacher = session.get(Teacher.class, 11);
-			Course course = new Course("hibernate");
-			teacher.addCourse(course);
 			
-			session.save(teacher);	
+			Teacher teacher = new Teacher("Tom", "Van Den Bossche");
+			session.save(teacher);
+			Course course = new Course("hibernate");
 			session.save(course);
+			
+			teacher.addCourse(course);	
+			session.save(course);
+			
 			session.getTransaction().commit();
 			
 			System.out.println("Done");

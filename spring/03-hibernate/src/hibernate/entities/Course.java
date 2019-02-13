@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -23,17 +24,17 @@ public class Course {
 	@Column(name="name")
 	private String name;
 	
-	// Uni-direction relationship: each course contains a teacher (@OneToOne only in Course.class)
-	// Bi-direction relationship: each teacher contains a course (@OneToOne in Teacher.class and Course.class)
-	@OneToOne(cascade=CascadeType.ALL)
+	// Uni-direction relationship: each course contains one teacher (@OneToOne only in Course.class)
+	// Bi-direction relationship: + each teacher contains one course (@OneToOne in Teacher.class and Course.class)
+	// @OneToOne(cascade=CascadeType.DETACH)
+	// @JoinColumn(name="teacherID")
+	// private Teacher teacher;
+	
+	// Multiple courses belong to one teacher & one teacher belongs to a course
+	// (@OneToMany in Teacher.class and @ManyToOne in Course.class)
+	@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.PERSIST})
 	@JoinColumn(name="teacherID")
 	private Teacher teacher;
-	
-	/* other relationships:
-	 * 		
-	 * 			@OneToMany & @ManyToOne
-	 * 			
-	 */
 
 	// Default constructor
 	public Course() { }

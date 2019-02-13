@@ -8,8 +8,8 @@ import hibernate.entities.Course;
 import hibernate.entities.Student;
 import hibernate.entities.Teacher;
 
-// @OneToOne & @JoinColumn annotations
-public class oneToOneRelationShip {
+// @ManyToOne & @OneToMany & @JoinColumn annotations
+public class oneToManyRelationShip {
 	public static void main(String[] args) {
 		
 		SessionFactory factory = new Configuration()
@@ -22,16 +22,14 @@ public class oneToOneRelationShip {
 		
 		try {
 			
-			Course course = new Course("Spring");
-			Teacher teacher = new Teacher("Bonita", "Applebum");
-			course.setTeacher(teacher);
-			
 			session.beginTransaction();
-			session.save(course);				
-			session.getTransaction().commit();
+			Teacher teacher = session.get(Teacher.class, 11);
+			Course course = new Course("hibernate");
+			teacher.addCourse(course);
 			
-			// Note: deletion of a course, will also delete the teacher when CascadingType = All
-			//		 other CascadingType require the relationship to be set to null
+			session.save(teacher);	
+			session.save(course);
+			session.getTransaction().commit();
 			
 			System.out.println("Done");
 		}

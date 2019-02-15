@@ -20,11 +20,32 @@ public class CustomerServiceImplementation implements CustomerService {
 	public List<Customer> getCustomers() {
 		return dao.getCustomers();
 	}
+	
+	@Override
+	@Transactional
+	public Customer getCustomer(Integer id) {
+		Customer customer = dao.getCustomer(id);
+		return customer;
+	}
 
 	@Override
 	@Transactional
 	public void addCustomer(Customer customer) {
 		dao.addCustomer(customer);
+		
+	}
+
+	@Override
+	@Transactional
+	public void updateCustomer(Customer customer) {
+		dao.updateCustomer(customer);
+		
+	}
+
+	@Override
+	@Transactional
+	public void deleteCustomer(Integer id) {
+		dao.deleteCustomer(id);
 		
 	}
 }

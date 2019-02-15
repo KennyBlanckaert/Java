@@ -17,22 +17,39 @@
 		<div id="container">
 			<div id="content">
 			
-			<!-- Add customer button -->
-			<input type="button" value="Add customer" class="add-button"
+				<!-- Add customer button -->
+				<input type="button" value="Add customer" class="add-button"
 					onclick="window.location.href='customerForm'; return false;"/>
 			
-			<!-- Customer table -->
+				<!-- Customer table -->
 				<table>
 					<tr>
 						<th>First name</th>
 						<th>Last name</th>
 						<th>Email</th>
+						<th>Action<th>
 					</tr>
-					<c:forEach var="tempCustomer" items="${customers}">
+					<c:forEach var="customer" items="${customers}">
+						<c:url var="updateLink" value="/customer/updateCustomerForm">
+							<c:param name="id" value="${customer.id}"/>
+						</c:url>
+						<c:url var="deleteLink" value="/customer/deleteCustomer">
+							<c:param name="id" value="${customer.id}"/>
+						</c:url>
+						
 						<tr>
-							<td>${tempCustomer.firstname}</td>
-							<td>${tempCustomer.lastname}</td>
-							<td>${tempCustomer.email}</td>
+							<td>${customer.firstname}</td>
+							<td>${customer.lastname}</td>
+							<td>${customer.email}</td>
+							<td>
+								<a href="${updateLink}">
+									Update
+								</a>
+								|
+								<a href="${deleteLink}" onclick="if (!(confirm('Are you sure you want to delete this?'))) return false;">
+									Delete
+								</a>
+							</td>
 						</tr>
 					</c:forEach>
 				</table>

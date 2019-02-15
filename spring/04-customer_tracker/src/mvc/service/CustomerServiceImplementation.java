@@ -20,4 +20,11 @@ public class CustomerServiceImplementation implements CustomerService {
 	public List<Customer> getCustomers() {
 		return dao.getCustomers();
 	}
+
+	@Override
+	@Transactional
+	public void addCustomer(Customer customer) {
+		dao.addCustomer(customer);
+		
+	}
 }

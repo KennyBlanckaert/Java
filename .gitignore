@@ -39,6 +39,7 @@ node_modules/
 /spring/02-spring_mvc/.settings/
 /spring/03-hibernate/.settings/
 /spring/04-customer_tracker/.settings/
+/spring/06-aop/.settings/
 
 # Settings #
 ######################
@@ -51,6 +52,8 @@ settings.json
 /spring/03-hibernate/.project
 /spring/04-customer_tracker/.classpath
 /spring/04-customer_tracker/.project
+/spring/06-aop/.classpath
+/spring/06-aop/.project
 
 # Logs and databases #
 ######################

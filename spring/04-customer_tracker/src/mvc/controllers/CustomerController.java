@@ -52,6 +52,15 @@ public class CustomerController {
 	}
 	
 	// Execution
+	@PostMapping("/searchCustomer")
+    public String searchCustomers(@RequestParam("keyword") String keyword, Model model) {
+
+        List<Customer> customers = service.searchCustomers(keyword);
+        model.addAttribute("customers", customers);
+
+        return "customerList";        
+    }
+	
 	@PostMapping("/addCustomer")
 	public String addCustomer(@ModelAttribute("customer") Customer customer, Model model) {		
 		

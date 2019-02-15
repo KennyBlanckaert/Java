@@ -15,4 +15,6 @@ public interface CustomerDAO {
 	public void updateCustomer(Customer customer);
 
 	public void deleteCustomer(Integer id);
+
+	public List<Customer> searchCustomers(String keyword);
 }

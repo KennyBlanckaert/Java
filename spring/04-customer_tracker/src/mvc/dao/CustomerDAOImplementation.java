@@ -20,7 +20,7 @@ public class CustomerDAOImplementation implements CustomerDAO {
 	@Override
 	public List<Customer> getCustomers() {
 		Session session = sessionFactory.getCurrentSession();
-		Query<Customer> result = session.createQuery("from Customer order by firstname", Customer.class);
+		Query<Customer> result = session.createQuery("FROM Customer ORDER BY firstname", Customer.class);
 		List<Customer> customers = result.getResultList();
 		
 		return customers;
@@ -51,5 +51,22 @@ public class CustomerDAOImplementation implements CustomerDAO {
 		Query<Customer> query = session.createQuery("DELETE FROM Customer WHERE id = :id");
 		query.setParameter("id", id);
 		query.executeUpdate();
+	}
+
+	@Override
+	public List<Customer> searchCustomers(String keyword) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		Query<Customer> result = null;
+		if (keyword != null && keyword.trim().length() > 0) {
+			result = session.createQuery("FROM Customer WHERE lower(firstname) LIKE :searchString OR lower(lastname) like :searchString", Customer.class);
+			result.setParameter("searchString", "%" + keyword.toLowerCase() + "%");
+        }
+        else {
+        	result = session.createQuery("FROM Customer", Customer.class);            
+        }
+        List<Customer> customers = result.getResultList();
+		
+		return customers;
 	}
 }

@@ -11,8 +11,10 @@
 ##### 2. Spring MVC - Controllers, Custom annotations, Form tags (spring_mvc)
 
 ##### 3. Hibernate
+
+##### 4. Spring MVC & Hibernate collaboration project (customer_tracker)
  
-##### 4. Spring Boot persistence, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
+##### 5. Spring Boot persistence, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
 ## Network
 

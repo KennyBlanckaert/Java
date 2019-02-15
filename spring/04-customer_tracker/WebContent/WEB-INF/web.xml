@@ -4,9 +4,13 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
 	id="WebApp_ID" version="3.1">
 
-	<display-name>spring-mvc-demo</display-name>
+	<display-name>spring-mvc-hibernate</display-name>
 
 	<!-- Spring MVC Configs -->
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
 
 	<!-- Configure Spring MVC Dispatcher Servlet -->
 	<servlet>

@@ -16,6 +16,10 @@
  
 ##### 5. Spring Boot persistence, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
+##### 6. AspectJ in Spring (aop)
+
+##### 7. Spring Security
+
 ## Network
 
 ##### 1. Game using Sockets (TicTacToe)

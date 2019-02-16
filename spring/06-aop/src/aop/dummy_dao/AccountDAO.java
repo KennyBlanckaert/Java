@@ -19,4 +19,10 @@ public class AccountDAO {
 		System.out.println(getClass() + ": Calling public void changeAccount()");
 		throw new Exception();
 	}
+	
+	public Account logOut(Account account) {
+		System.out.println(getClass() + ": Calling public void updateAccount(Account account)");
+		account.setStatus("offline");
+		return account;
+	}
 }

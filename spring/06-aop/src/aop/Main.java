@@ -45,6 +45,10 @@ public class Main {
 		System.out.println();
 		
 		try { account_dao.changeAccount(); } catch (Exception exception) { /* message should be printed within advice */ }
+		try { Thread.sleep(100); } catch (Exception exception) { /* because code after advice could be faster */ }
+		System.out.println();
+		
+		account_dao.logOut(account);
 		System.out.println();
 		
 		context.close();

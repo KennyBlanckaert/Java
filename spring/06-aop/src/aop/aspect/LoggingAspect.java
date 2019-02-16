@@ -1,6 +1,7 @@
 package aop.aspect;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
@@ -30,6 +31,9 @@ public class LoggingAspect {
 	
 	@Pointcut(value="execution(public void changeAccount())")
 	private void publicVoidChangeAccount() { }
+	
+	@Pointcut(value="execution(public aop.entities.Account logOut(aop.entities.Account))")
+	private void publicAccountLogOut() { }
 	
 	@Pointcut(value="execution(public void updateAccount(aop.entities.Account))")
 	private void publicVoidUpdateAccount() { }
@@ -66,10 +70,8 @@ public class LoggingAspect {
 		System.out.println("-------------- Execution afterReturning public void updateAccount(Account) --------------");
 		
 		Object[] args = joinPoint.getArgs();
-		if (args[0] instanceof Account) {
-			Account account = (Account) args[0];
-			account.setStatus("Online");
-		}
+		Account account = (Account) args[0];
+		account.setStatus("Online");
 		
 		// Note: 
 		// when the monitored method has a return value, add the 'returning="..."' to the annotation
@@ -79,9 +81,37 @@ public class LoggingAspect {
 	// Advice after throwing of exception in 'public' 'void' 'changeAccount'()
 	// Postprocessing example
 	@AfterThrowing(value="publicVoidChangeAccount()", throwing="exception")
-	public void afterThrownigChangeAccountAdvice(JoinPoint joinPoint, Throwable exception) {
+	public void afterThrowingChangeAccountAdvice(JoinPoint joinPoint, Throwable exception) {
 		System.out.println("-------------- Execution afterThrowing public void ChangeAccount() --------------");
 		System.err.println("Exception detected!");
+	}
+	
+	// Around advice for 'public' 'Account' 'logOut'(Account account)
+	// Proxy pattern: method is only executed within advice!!!
+	@Around(value="publicAccountLogOut()")
+	public void aroundLogOut(ProceedingJoinPoint preceedingJoinPoint) {
+		System.out.println("-------------- Execution around public Account logOut(Account) --------------");
+		
+		try {
+			Object[] args = preceedingJoinPoint.getArgs();
+			Account account = (Account) args[0];
+			if (account.getStatus().equalsIgnoreCase("online")) {
+				
+				long begin = System.currentTimeMillis();
+				preceedingJoinPoint.proceed();
+				Thread.sleep(123);
+				long end = System.currentTimeMillis();
+				long duration = (end - begin);
+				System.out.println(account.getName() + " is now " + account.getStatus());
+				System.out.println("Operation took " + duration + " milliseconds");
+			}
+			else {
+				System.out.println("Account already logged out.");
+			}
+		}
+		catch (Throwable e) {
+			e.printStackTrace();
+		}
 	}
 }
 

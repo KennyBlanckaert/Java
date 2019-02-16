@@ -14,4 +14,9 @@ public class AccountDAO {
 	public void deleteAccount() {
 		System.out.println(getClass() + ": Calling public void deleteAccount()");
 	}
+	
+	public void changeAccount() throws Exception {
+		System.out.println(getClass() + ": Calling public void changeAccount()");
+		throw new Exception();
+	}
 }

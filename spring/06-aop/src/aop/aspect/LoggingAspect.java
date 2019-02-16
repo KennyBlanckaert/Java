@@ -3,6 +3,7 @@ package aop.aspect;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
@@ -13,28 +14,7 @@ import org.springframework.stereotype.Component;
 
 import aop.entities.Account;
 
-/* Summary:
- * 		Used for security - (audit) logging - transactions
- * 		Postprocessing with @AfterReturning
- * 
- * 		Advice types:
- * 			- @Before | @After | @Around | @AfterReturning | 
- * 
- * 		Pointcut expressions:
- * 			- @Pointcut
- * 			- execution(type return method)
- * 			- use of wildcard '*'. Can also be used within the method name
- * 			- use of FQN to be more specific
- * 			- () = method with no arguments
- * 			- (*) = method with one argument
- * 			- (..) = method with zero to 'n' arguments
- * 			- combinations with '&&', '||', '!' 
- * 
- * 		Order:
- * 			- @Order
- * 			- highest priority goes first
- * 			- negative numbers allowed
- */
+// Summary below
 @Aspect
 @Order(10)
 @Component
@@ -47,6 +27,9 @@ public class LoggingAspect {
 	
 	@Pointcut(value="execution(public void deleteAccount())")
 	private void publicVoidDeleteAccount() { }
+	
+	@Pointcut(value="execution(public void changeAccount())")
+	private void publicVoidChangeAccount() { }
 	
 	@Pointcut(value="execution(public void updateAccount(aop.entities.Account))")
 	private void publicVoidUpdateAccount() { }
@@ -76,7 +59,7 @@ public class LoggingAspect {
 		System.out.println(signature);
 	}
 	
-	// Advice after execution of 'public' 'any' 'updateAccount'(Account account)
+	// Advice after returning of 'public' 'void' 'updateAccount'(Account account)
 	// Postprocessing example
 	@AfterReturning(value="publicVoidUpdateAccount()")
 	public void afterReturningUpdateAccountAdvice(JoinPoint joinPoint) {
@@ -87,5 +70,41 @@ public class LoggingAspect {
 			Account account = (Account) args[0];
 			account.setStatus("Online");
 		}
+		
+		// Note: 
+		// when the monitored method has a return value, add the 'returning="..."' to the annotation
+		// this copies the return value/object to the arguments 
+	}
+	
+	// Advice after throwing of exception in 'public' 'void' 'changeAccount'()
+	// Postprocessing example
+	@AfterThrowing(value="publicVoidChangeAccount()", throwing="exception")
+	public void afterThrownigChangeAccountAdvice(JoinPoint joinPoint, Throwable exception) {
+		System.out.println("-------------- Execution afterThrowing public void ChangeAccount() --------------");
+		System.err.println("Exception detected!");
 	}
 }
+
+/* Summary:
+ * 		Used for security - (audit) logging - transactions
+ * 
+ * 		Advice types:
+ * 			- @Before | @After | @Around | @AfterReturning | @AfterThrowing
+ * 
+ * 		Pointcut expressions:
+ * 			- @Pointcut
+ * 			- execution(type return method)
+ * 			- use of wildcard '*'. Can also be used within the method name
+ * 			- use of FQN to be more specific
+ * 			- () = method with no arguments
+ * 			- (*) = method with one argument
+ * 			- (..) = method with zero to 'n' arguments
+ * 			- combinations with '&&', '||', '!' 
+ * 
+ * 		Order:
+ * 			- @Order
+ * 			- highest priority goes first
+ * 			- negative numbers allowed
+ * 		
+ * 		Postprocessing by converting the Object arguments to the correct type
+ */

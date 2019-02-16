@@ -30,14 +30,22 @@ public class Main {
 		
 		account_dao.addAccount();
 		System.out.println();
+		
 		account_dao.deleteAccount();
 		System.out.println();
+		
 		membership_dao.addAccount(account);
 		System.out.println();
+		
 		membership_dao.updateAccount(account);
 		System.out.println();
+		
 		System.out.println("---------------- Check Postprocessing ----------------");
 		System.out.println("Account level: " + account.getName() + " (" + account.getStatus() + ")");
+		System.out.println();
+		
+		try { account_dao.changeAccount(); } catch (Exception exception) { /* message should be printed within advice */ }
+		System.out.println();
 		
 		context.close();
 	}

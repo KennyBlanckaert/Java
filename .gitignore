@@ -61,4 +61,3 @@ settings.json
 # Logs and databases #
 ######################
 *.log
-*.sql

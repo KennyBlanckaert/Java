@@ -29,6 +29,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Custom Login Page
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
+		CustomAccessDeniedHandler handler = new CustomAccessDeniedHandler();
+		handler.setErrorPage("/403");
+		
 		http.authorizeRequests()
 			.antMatchers("/").hasRole("EMPLOYEE")
 			.antMatchers("/managerNotifications/**").hasRole("MANAGER")
@@ -37,12 +40,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.formLogin()
 				.loginPage("/login")
 				.loginProcessingUrl("/authenticateUser")
-				.permitAll()
+				.permitAll()	
+		.and()
+			.exceptionHandling()
+				.accessDeniedHandler(handler)
 		.and()
 			.logout()
 			.permitAll();
-		
-				
 	}
 	
 	/* Automatic CSRF protection (makes use of tokens and cookies)

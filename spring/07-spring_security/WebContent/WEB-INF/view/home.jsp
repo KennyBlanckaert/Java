@@ -17,8 +17,12 @@
 		<p>Role(s): <security:authentication property="principal.authorities"/></p>
 		
 		<!-- Links -->
-		<p><a href="${pageContext.request.contextPath}/managerNotifications">Manager notifications</a></p>
-		<p><a href="${pageContext.request.contextPath}/systems">Admin meetings</a></p>
+		<security:authorize access="hasRole('MANAGER')">
+			<p><a href="${pageContext.request.contextPath}/managerNotifications">Manager notifications</a></p>
+		</security:authorize>
+		<security:authorize access="hasRole('ADMIN')">
+			<p><a href="${pageContext.request.contextPath}/systems">Admin meetings</a></p>
+		</security:authorize>
 		
 		<!-- Logout button -->
 		<form:form action="${pageContext.request.contextPath}/logout" method="POST">

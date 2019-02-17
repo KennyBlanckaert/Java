@@ -10,7 +10,8 @@ USE `spring_security`;
 DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+-- bcrypt password requires 68 characters
+  `password` varchar(68) NOT NULL,
   `enabled` tinyint(1) NOT NULL,
   PRIMARY KEY (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -21,11 +22,13 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` 
 VALUES 
-('kenny','{noop}Azerty123',1),
-('dennis','{noop}manager',1),
-('bryan','{noop}operator',1),
-('susan','{noop}operator',1),
-('tom','{noop}operator',1);
+-- {noop} for plain text passwords
+-- {bcrypt} for bcrypt encrypted passwords
+('kenny','{bcrypt}$2a$04$c06tMpBQH4l6bNVyGv/IGeM7ToqE80fQ0JCYl/j7CyKFHrqSMB9nm',1),
+('dennis','{bcrypt}$2a$04$TjH9eyyiIY.9XCUmjN2z.OPe/i9dVYlnx7ko9m74cGA4loNvFsgNy',1),
+('bryan','{bcrypt}$2a$04$fORM.yPJIDE6z6C0JqmDIOfp9Fxp8hoqFJzbWnaWcEKzWBLJVmzsa',1),
+('susan','{bcrypt}$2a$04$fORM.yPJIDE6z6C0JqmDIOfp9Fxp8hoqFJzbWnaWcEKzWBLJVmzsa',1),
+('tom','{bcrypt}$2a$04$fORM.yPJIDE6z6C0JqmDIOfp9Fxp8hoqFJzbWnaWcEKzWBLJVmzsa',1);
 
 
 --

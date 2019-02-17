@@ -10,4 +10,14 @@ public class HomeController {
 	public String showHome() {
 		return "home";
 	}
+	
+	@GetMapping("/managerNotifications") 
+	public String showNotifications() {
+		return "notifications";
+	}
+	
+	@GetMapping("/systems") 
+	public String showMeetings() {
+		return "meetings";
+	}
 }

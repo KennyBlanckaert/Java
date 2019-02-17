@@ -1,5 +1,8 @@
 package project.config;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -12,9 +15,17 @@ import org.springframework.security.core.userdetails.User.UserBuilder;
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+	@Autowired
+	private DataSource dataSource;
+	
 	// User Authorization Roles
 	@Override
 	public void configure(AuthenticationManagerBuilder auth) throws Exception {
+		
+		// database authenication
+		// This requires a specific database schema
+		// (http://springinpractice.com/2010/07/06/spring-security-database-schemas-for-mysql)
+//		 auth.jdbcAuthentication().dataSource(dataSource);
 		
 		// in memory authentication
 		UserBuilder users = User.withDefaultPasswordEncoder();
@@ -23,7 +34,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.withUser(users.username("kenny").password("Azerty123").roles("ADMIN", "MANAGER", "QA", "EMPLOYEE"))
 			.withUser(users.username("dennis").password("manager").roles("MANAGER", "QA", "EMPLOYEE"))
 			.withUser(users.username("tom").password("operator").roles("EMPLOYEE"))
-			.withUser(users.username("bryan").password("operator").roles("EMPLOYEE"));
+			.withUser(users.username("bryan").password("operator").roles("EMPLOYEE"))
+			.withUser(users.username("susan").password("operator").roles("EMPLOYEE"));
 	}
 	
 	// Custom Login Page

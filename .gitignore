@@ -1,9 +1,11 @@
 # Compiled source #
 ###################
+
 *.exe
 
 # Packages #
 ############
+
 *.7z
 *.dmg
 *.gz
@@ -12,38 +14,77 @@
 *.rar
 *.tar
 *.zip
+*.mf
 
-# Directories #
-######################
+# Unimportant Directories #
+###########################
+
 node_modules/
 .vscode/
 
-/network/TicTacToeClient/nbproject/private/
-/network/TicTacToeClient/build/
-/network/TicTacToeServer/nbproject/private/
-/network/TicTacToeServer/build/
 
-/network/AuctionServer/nbproject/private/
-/network/AuctionServer/dist/
-/network/AuctionServer/build/
-/network/AuctionConsumers/nbproject/private/
-/network/AuctionConsumers/dist/
-/network/AuctionConsumers/build/
 
-/network/DictServiceApplication/nbproject/private/
-/network/DictServiceApplication/build/
-/network/test/nbproject/private/
-/network/test/build/
+/network/01-TicTacToeClient/nbproject/
+/network/01-TicTacToeClient/build/
+/network/01-TicTacToeServer/nbproject/
+/network/01-TicTacToeServer/build/
+
+/network/02-AuctionServer/nbproject/
+/network/02-AuctionServer/dist/
+/network/02-AuctionServer/build/
+/network/02-AuctionConsumers/nbproject/
+/network/02-AuctionConsumers/dist/
+/network/02-AuctionConsumers/build/
+
+
 
 /spring/01-workout_application/.settings/
+/spring/01-workout_application/bin/
+/spring/01-workout_application/target/
+
 /spring/02-spring_mvc/.settings/
+/spring/02-spring_mvc/build/
+/spring/02-spring_mvc/target/
+
 /spring/03-hibernate/.settings/
+/spring/03-hibernate/target/
+
 /spring/04-customer_tracker/.settings/
+/spring/04-customer_tracker/target/
+
 /spring/05-aop/.settings/
-/spring/06-spring_security/.settings/
+/spring/05-aop/target/
+
+/spring/06-spring_rest/.settings/
+/spring/06-spring_rest/target/
+
+/spring/07-spring_security/.settings/
+/spring/07-spring_security/target/
+
+/spring/07-spring_security/.settings/
+/spring/07-spring_security/target/
+
+/spring/08-hospital_application/api-gateway/bin/
+/spring/08-hospital_application/api-gateway/.mvn/
+/spring/08-hospital_application/finance/bin/
+/spring/08-hospital_application/finance/.mvn/
+/spring/08-hospital_application/patient/bin/
+/spring/08-hospital_application/patient/.mvn/
+/spring/08-hospital_application/reception/bin/
+/spring/08-hospital_application/reception/.mvn/
+/spring/08-hospital_application/ward/bin/
+/spring/08-hospital_application/ward/.mvn/
+
+
+
+/webservice/SchoolService/build/
+/webservice/SchoolService/logs/
+/webservice/SchoolService/nbproject/
+
 
 # Settings #
-######################
+############
+
 settings.json
 /spring/01-workout_application/.classpath
 /spring/01-workout_application/.project
@@ -55,8 +96,10 @@ settings.json
 /spring/04-customer_tracker/.project
 /spring/05-aop/.classpath
 /spring/05-aop/.project
-/spring/06-spring_security/.classpath
-/spring/06-spring_security/.project
+/spring/06-spring_rest/.classpath
+/spring/06-spring_rest/.project
+/spring/07-spring_security/.classpath
+/spring/07-spring_security/.project
 
 # Logs and databases #
 ######################

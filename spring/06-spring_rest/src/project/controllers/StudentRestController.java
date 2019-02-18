@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import project.entities.Student;
@@ -15,22 +16,23 @@ import project.errors.StudentNotFoundException;
 import project.service.StudentService;
 
 @RestController
+@RequestMapping("/student")
 public class StudentRestController {
 	
 	@Autowired
 	private StudentService service;
 	
-	@GetMapping("/students")
+	@GetMapping("/")
 	public List<Student> getStudents() {
 		return service.getStudents();
 	}
 	
-	@GetMapping("/students/name/{firstname}")
+	@GetMapping("/name/{firstname}")
 	public List<Student> getStudentsByName(@PathVariable("firstname") String firstname) {
 		return service.getStudentsByName(firstname);
 	}
 	
-	@GetMapping("/student/id/{id}")
+	@GetMapping("/id/{id}")
 	public Student getStudentsByName(@PathVariable("id") int id) {
 			
 		Student student = service.getStudentsById(id);

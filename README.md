@@ -13,12 +13,14 @@
 ##### 3. Hibernate
 
 ##### 4. Spring MVC & Hibernate collaboration project (customer_tracker)
- 
-##### 5. Spring Boot persistence, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
-##### 6. AspectJ in Spring (aop)
+##### 5. AspectJ in Spring (aop)
+
+##### 6. REST in Spring MVC (spring_rest)
 
 ##### 7. Spring Security
+ 
+##### 8. Spring Boot persistence, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
 ## Network
 

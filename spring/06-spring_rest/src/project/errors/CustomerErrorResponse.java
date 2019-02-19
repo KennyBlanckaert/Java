@@ -1,6 +1,6 @@
 package project.errors;
 
-public class StudentErrorResponse {
+public class CustomerErrorResponse {
 
 	// Fields
 	private int status;
@@ -8,11 +8,11 @@ public class StudentErrorResponse {
 	private long timeStamp;
 	
 	// Constructors
-	public StudentErrorResponse() {
+	public CustomerErrorResponse() {
 		
 	}
 
-	public StudentErrorResponse(int status, String message, long timeStamp) {
+	public CustomerErrorResponse(int status, String message, long timeStamp) {
 		super();
 		this.status = status;
 		this.message = message;

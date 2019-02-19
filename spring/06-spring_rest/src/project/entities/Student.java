@@ -1,5 +1,7 @@
 package project.entities;
 
+import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown=true)
@@ -57,5 +59,12 @@ public class Student {
 	
 	public void setCourses(String[] courses) {
 		this.courses = courses;
+	}
+	
+	// Functions
+	@Override
+	public String toString() {
+		return "Student [studentNumber=" + studentNumber + ", firstName=" + firstName + ", lastName=" + lastName
+				+ ", address=" + address + ", courses=" + Arrays.toString(courses) + "]";
 	}
 }

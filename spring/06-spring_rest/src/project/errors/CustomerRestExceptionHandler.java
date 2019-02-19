@@ -25,11 +25,11 @@ public class CustomerRestExceptionHandler {
 	public ResponseEntity<CustomerErrorResponse> handleBadRequestException(NumberFormatException exception) {
 		
 		CustomerErrorResponse error = new CustomerErrorResponse();
-		error.setStatus(HttpStatus.BAD_REQUEST.value());
+		error.setStatus(HttpStatus.NOT_ACCEPTABLE.value());
 		error.setMessage("number required");
 		error.setTimeStamp(System.currentTimeMillis());
 		
-		return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>(error, HttpStatus.NOT_ACCEPTABLE);
 	}
 	
 	// ExceptionHandler for all other possible Exceptions

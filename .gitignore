@@ -38,9 +38,9 @@ node_modules/
 
 
 
-/spring/01-workout_application/.settings/
-/spring/01-workout_application/bin/
-/spring/01-workout_application/target/
+/spring/01-spring_beans/.settings/
+/spring/01-spring_beans/bin/
+/spring/01-spring_beans/target/
 
 /spring/02-spring_mvc/.settings/
 /spring/02-spring_mvc/build/
@@ -86,8 +86,8 @@ node_modules/
 ############
 
 settings.json
-/spring/01-workout_application/.classpath
-/spring/01-workout_application/.project
+/spring/01-spring_beans/.classpath
+/spring/01-spring_beans/.project
 /spring/02-spring_mvc/.classpath
 /spring/02-spring_mvc/.project
 /spring/03-hibernate/.classpath

@@ -22,19 +22,6 @@
  
 ##### 8. Spring Boot persistence, Spring Actuator, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
-```
-spring-boot-starter
-spring-boot-starter-devtools
-spring-boot-starter-actuator
-spring-boot-starter-web
-spring-boot-starter-security
-spring-boot-starter-data-jpa
-
-mvnw package (-DskipTests)
-java -jar ...
-mvnw spring-boot:run
-```
-
 ## Network
 
 ##### 1. Game using Sockets (TicTacToe)

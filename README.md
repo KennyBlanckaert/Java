@@ -20,7 +20,7 @@
 
 ##### 7. Spring Security
  
-##### 8. Spring Boot persistence, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
+##### 8. Spring Boot persistence, Spring Actuator, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
 ## Network
 

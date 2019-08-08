@@ -19,7 +19,7 @@ public class ConnectionCreator extends Thread {
 
     // Fields
     private static final Logger LOGGER = Logger.getLogger(ConnectionCreator.class.getName());
-    private static final int PORT = 9000;
+    private static final int PORT = 9001;
     private ServerSocket serverSocket;
     private BlockingQueue<Player> lobby;
     
@@ -38,7 +38,6 @@ public class ConnectionCreator extends Thread {
     // Thread run 
     @Override
     public void run() {
-        
         while (true) {
             try {
                 Player player = new Player(serverSocket.accept());

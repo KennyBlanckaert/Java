@@ -1,9 +1,7 @@
 # Java
 
-## Webservice
+&nbsp;
 
-##### 1. Java Web Service with MySQL & Java Web Application using PHP mysqli
- 
 ## Spring & Hibernate 
 
 ##### 1. From manual beans to automatic beans with annotations/injection (workout application)
@@ -22,8 +20,8 @@
  
 ##### 8. Spring Boot persistence, Spring Actuator, messaging, REST, Docker & Monitoring [Prometheus] (hospital application)
 
+##### 9. Thymeleaf (template engine)
 ## Network
 
 ##### 1. Game using Sockets (TicTacToe)
 
-##### 2. JMS application + Message broker (AuctionServer)

@@ -17,7 +17,7 @@ import javax.swing.JFrame;
  */
 public class TicTacToeClient implements Observer, AutoCloseable {
     
-    private static final int PORT = 9000;
+    private static final int PORT = 9001;
     private final TicTacToeFrame frame;
     private final String serverAddress;
     private final Socket socket;

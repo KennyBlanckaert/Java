@@ -37,7 +37,7 @@ public class GameCreator extends Thread {
                 Player playerOne = lobby.take();
                 Player playerTwo = lobby.take();
                 Game game = new Game(lobby, playerOne, playerTwo);
-                this.executorService.submit(game);
+                this.executorService.execute(game);
             } 
             catch (InterruptedException ex) {
                 LOGGER.log(Level.WARNING, "Failure while creating a game");
